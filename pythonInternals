@@ -58,4 +58,28 @@ Python Byte code and Python Code Object are not the same !!! as shown above
 Bytecode are instructions to the Interpreter
 The interpreter will loop through each byte, look up what it should do for each one, and then do that thing.
 
+import dis
+def val(x):
+    a=3
+    return x+a
+
+print val.func_code
+print dis.dis(val.func_code)
+
+output :
+  4           0 LOAD_CONST               1 (3)
+              3 STORE_FAST               1 (a)
+
+  5           6 LOAD_FAST                0 (x)
+              9 LOAD_FAST                1 (a)
+             12 BINARY_ADD          
+             13 RETURN_VALUE
+
+Bytecode is an implementation detail of the CPython interpreter!
+
+"dis" module in python disassembles a Module's functions or class methods or a Code object as shown above .
+
+Note : Disassemble the bytesource object. bytesource can denote either a module, a class, a method, a function, or a code object. For a module, it disassembles all functions. For a class, it disassembles all methods. For a single code sequence, it prints one line per bytecode instruction. If no object is provided, it disassembles the last traceback.
+
+"dis" module of python is really a cool feature to view the internals of the code in python
 
